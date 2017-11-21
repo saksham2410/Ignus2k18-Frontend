@@ -1,0 +1,203 @@
+.cards {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+.cards,
+.card {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+.card {
+  margin: 0 -0.26em;
+  font-size: 20vw;
+  cursor: pointer;
+  color: #292A18;
+  /* Uncomment these lines to see the target areas for the hovering */
+  position: relative;
+  /*
+  background: rgba(255,255,255,0.5);
+  outline: solid 5px red;
+  */
+  --s: 0;
+  --spread: 0;
+  --spreadAbs: 0;
+}
+.card:before,
+.card:after {
+  content: '';
+  display: block;
+  pointer-events: none;
+}
+
+.cards_css{
+  z-index: 800;
+    position: absolute;
+    bottom: -30vw;
+    left: 27vw;
+}
+.card:before {
+  position: absolute;
+  top: 5%;
+  right: 0;
+  bottom: -5%;
+  left: 0;
+  margin: auto;
+  background: #000;
+  -webkit-filter: blur(10px);
+          filter: blur(10px);
+  opacity: 0;
+  -webkit-transition: opacity 0.35s linear;
+  transition: opacity 0.35s linear;
+}
+.card:after {
+  position: relative;
+  width: 1em;
+  height: 1.1em;
+  border-radius: 0.1em;
+  background: #EEE;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  padding: 0.1em 0;
+  line-height: 1;
+  -webkit-transform-origin: center bottom;
+          transform-origin: center bottom;
+  -webkit-transition: -webkit-transform 0.4s cubic-bezier(0.46, 0.01, 0.3, 0.98);
+  transition: -webkit-transform 0.4s cubic-bezier(0.46, 0.01, 0.3, 0.98);
+  transition: transform 0.4s cubic-bezier(0.46, 0.01, 0.3, 0.98);
+  transition: transform 0.4s cubic-bezier(0.46, 0.01, 0.3, 0.98), -webkit-transform 0.4s cubic-bezier(0.46, 0.01, 0.3, 0.98);
+  -webkit-transition-timing-function: cubic-bezier(0.1, 0.98, 0.47, 0.99);
+          transition-timing-function: cubic-bezier(0.1, 0.98, 0.47, 0.99);
+}
+.card:nth-child(1) {
+  --spread: -0.5;
+  --spreadAbs: 0.5;
+  --origin: 100%;
+  /* Fallback for CSSvar-less browsers */
+}
+.card:nth-child(1):before,
+.card:nth-child(1):after {
+  -webkit-transform: rotate(-17.5deg) translateY(2.5%);
+          transform: rotate(-17.5deg) translateY(2.5%);
+  -webkit-transform-origin: var(--origin) 100%;
+          transform-origin: var(--origin) 100%;
+}
+.card:nth-child(2) {
+  --spread: -0.25;
+  --spreadAbs: 0.25;
+  --origin: 75%;
+  /* Fallback for CSSvar-less browsers */
+}
+.card:nth-child(2):before,
+.card:nth-child(2):after {
+  -webkit-transform: rotate(-8.75deg) translateY(1.25%);
+          transform: rotate(-8.75deg) translateY(1.25%);
+  -webkit-transform-origin: var(--origin) 100%;
+          transform-origin: var(--origin) 100%;
+}
+.card:nth-child(3) {
+  --spread: 0;
+  --spreadAbs: 0;
+  --origin: 50%;
+  /* Fallback for CSSvar-less browsers */
+}
+.card:nth-child(3):before,
+.card:nth-child(3):after {
+  -webkit-transform: rotate(0deg) translateY(0%);
+          transform: rotate(0deg) translateY(0%);
+  -webkit-transform-origin: var(--origin) 100%;
+          transform-origin: var(--origin) 100%;
+}
+.card:nth-child(4) {
+  --spread: 0.25;
+  --spreadAbs: 0.25;
+  --origin: 25%;
+  /* Fallback for CSSvar-less browsers */
+}
+.card:nth-child(4):before,
+.card:nth-child(4):after {
+  -webkit-transform: rotate(8.75deg) translateY(1.25%);
+          transform: rotate(8.75deg) translateY(1.25%);
+  -webkit-transform-origin: var(--origin) 100%;
+          transform-origin: var(--origin) 100%;
+}
+.card:nth-child(5) {
+  --spread: 0.5;
+  --spreadAbs: 0.5;
+  --origin: 0%;
+  /* Fallback for CSSvar-less browsers */
+}
+.card:nth-child(5):before,
+.card:nth-child(5):after {
+  -webkit-transform: rotate(17.5deg) translateY(2.5%);
+          transform: rotate(17.5deg) translateY(2.5%);
+  -webkit-transform-origin: var(--origin) 100%;
+          transform-origin: var(--origin) 100%;
+}
+@supports ( (--a: 0) ) {
+  .card:nth-child(n):before,
+  .card:nth-child(n):after {
+    -webkit-transform: rotate(calc( var(--spread) * 35deg)) translateY(calc( var(--spreadAbs) * 5%));
+            transform: rotate(calc( var(--spread) * 35deg)) translateY(calc( var(--spreadAbs) * 5%));
+    -webkit-transform-origin: var(--origin) 100%;
+            transform-origin: var(--origin) 100%;
+  }
+}
+.card:hover:before {
+  opacity: 0.25;
+  z-index: 2;
+  -webkit-transition-duration: 0.2s;
+          transition-duration: 0.2s;
+}
+.card:hover:after {
+  z-index: 3;
+  pointer-events: auto;
+  -webkit-transition-duration: 0.25s;
+          transition-duration: 0.25s;
+  -webkit-transition-timing-function: cubic-bezier(0.37, -0.12, 0.32, 1.49);
+          transition-timing-function: cubic-bezier(0.37, -0.12, 0.32, 1.49);
+  -webkit-transform: translate(0%, -75%) scale(1.25);
+          transform: translate(0%, -75%) scale(1.25);
+  -webkit-transform: rotate(calc( var(--spread) * 25deg)) translate(0%, -45%) scale(1.25);
+          transform: rotate(calc( var(--spread) * 25deg)) translate(0%, -45%) scale(1.25);
+}
+.card--aoc:after {
+      background-image: url(hh.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.card--aoh:after {
+  background-image: url(hh1.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.card--koh:after {
+  background-image: url(hh2.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.card--aod:after {
+  background-image: url(hh3.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.card--aos:after {
+  background-image: url(hh4.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.card--kos:after {
+  content: '\1F0AE';
+}
+.card--aod,
+.card--aoh,
+.card--koh {
+  color: #CC5840;
+}}
